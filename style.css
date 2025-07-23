@@ -1,0 +1,108 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  text-align: center;
+  color: #fff;
+}
+
+.countdown {
+  font-size: 5em;
+  margin-top: 25vh;
+  color: #ff69b4;
+  font-family: 'Great Vibes', cursive;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.container {
+  display: none;
+  animation: fadeIn 2s ease-in-out forwards;
+  padding: 20px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+h1 {
+  font-size: 3em;
+  margin: 20px 0;
+  font-family: 'Great Vibes', cursive;
+  color: #ffb6c1;
+  text-shadow: 0 0 30px #ff69b4;
+}
+
+.photo img {
+  max-width: 90%;
+  border-radius: 20px;
+  border: 5px solid #fff;
+  box-shadow: 0 0 50px #ff69b4;
+  transition: transform 0.5s;
+}
+
+.photo img:hover {
+  transform: scale(1.03);
+}
+
+.message {
+  font-size: 1.4em;
+  color: #ffe4e1;
+  margin-top: 25px;
+  white-space: pre-line;
+  min-height: 100px;
+}
+
+.date {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #ccc;
+  font-style: italic;
+}
+
+.butterfly {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-image: url('https://i.ibb.co/gz6xvLV/butterfly.gif');
+  background-size: cover;
+  animation: fly 10s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes fly {
+  0% { transform: translateY(100vh) rotate(0deg); }
+  100% { transform: translateY(-100vh) rotate(360deg); }
+}
+
+.replay-btn {
+  margin-top: 25px;
+  padding: 10px 25px;
+  font-size: 1em;
+  background: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 10px #ff69b4;
+}
+
+.replay-btn:hover {
+  background: #ff1493;
+  box-shadow: 0 0 20px #ff69b4;
+}
