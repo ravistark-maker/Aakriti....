@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Aakriti!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap');
+        
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #ffb8b8;
+            --text: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff5f5 0%, #ffdfeb 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--text);
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: var(--primary);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 2rem 0;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover {
+            background: #ff4757;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .surprise-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffdfeb 0%, #fff5f5 100%);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+        
+        .photo-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .photo-item {
+            margin: 0 2rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+        
+        .photo-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .photo-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 1rem;
+        }
+        
+        .photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .photo:hover {
+            transform: scale(1.05);
+        }
+        
+        .crown {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            z-index: 10;
+            filter: drop-shadow(0 0 8px gold);
+        }
+        
+        .photo-wish {
+            font-size: 1.5rem;
+            font-family: 'Dancing Script', cursive;
+            color: var(--primary);
+            min-height: 80px;
+            margin-top: 1rem;
+            overflow: hidden;
+            border-right: 3px solid var(--primary);
+            white-space: nowrap;
+            animation: typing 6s steps(40, end) forwards, blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary); }
+        }
+        
+        .final-message {
+            font-size: 3rem;
+            font-family: 'Dancing Script', cursive;
+            color: var(--primary);
+            margin: 3rem 0;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 1.5s ease;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+        }
+        
+        .final-message.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .close-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+            display: none;
+        }
+        
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            z-index: 100;
+        }
+        
+        .music-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: heart-float 4s ease-in-out forwards;
+        }
+        
+        @keyframes heart-float {
+            0% {
+                transform: translateY(0) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy Birthday Aakriti!</h1>
+        <p>From: Ravi</p>
+        
+        <button class="btn" id="openSurprise">Open Your Royal Surprise!</button>
+        
+        <div class="personal-info">
+            <p>Mummy: Reena | Papa: Ramkyash</p>
+            <p>Favorite Hero: Aditya | Favorite Place: Mumbai</p>
+        </div>
+    </div>
+    
+    <!-- Surprise Page -->
+    <div class="surprise-page" id="surprisePage">
+        <button class="close-btn" id="closeBtn">✕</button>
+        
+        <div class="photo-row">
+            <div class="photo-item" id="photoItem1">
+                <div class="photo-container">
+                    <img src="https://iili.io/FwKMAue.jpg" alt="Aakriti" class="photo">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png" class="crown">
+                </div>
+                <div class="photo-wish" id="photoWish1"></div>
+            </div>
+            
+            <div class="photo-item" id="photoItem2">
+                <div class="photo-container">
+                    <img src="https://iili.io/FwKMCG4.jpg" alt="Aakriti" class="photo">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png" class="crown">
+                </div>
+                <div class="photo-wish" id="photoWish2"></div>
+            </div>
+        </div>
+        
+        <div class="photo-row">
+            <div class="photo-item" id="photoItem3">
+                <div class="photo-container">
+                    <img src="https://iili.io/FwKMu99.jpg" alt="Aakriti" class="photo">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png" class="crown">
+                </div>
+                <div class="photo-wish" id="photoWish3"></div>
+            </div>
+            
+            <div class="photo-item" id="photoItem4">
+                <div class="photo-container">
+                    <img src="https://iili.io/FwKMI87.jpg" alt="Aakriti" class="photo">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png" class="crown">
+                </div>
+                <div class="photo-wish" id="photoWish4"></div>
+            </div>
+        </div>
+        
+        <div class="final-message" id="finalMessage">BEST FRIEND FOREVER</div>
+    </div>
+    
+    <div class="music-control" onclick="toggleMusic()">
+        <div class="music-icon">🎵</div>
+    </div>
+    
+    <audio id="bgMusic" loop>
+        <source src="https://www.youtube.com/embed/BHlCNUyu5EU?si=3PRVFUcLo-eg4Af8&t=38" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Photo wishes with slow typewriter effect
+        const photoWishes = [
+            "Queen of our hearts! 👑",
+            "Your smile brightens every day! ✨",
+            "May your year be as special as you are! 💖",
+            "Wishing you endless happiness! 🌈"
+        ];
+        
+        // DOM elements
+        const openBtn = document.getElementById('openSurprise');
+        const surprisePage = document.getElementById('surprisePage');
+        const closeBtn = document.getElementById('closeBtn');
+        const finalMessage = document.getElementById('finalMessage');
+        const bgMusic = document.getElementById('bgMusic');
+        
+        // Open surprise in new page
+        openBtn.addEventListener('click', function() {
+            this.style.display = 'none';
+            surprisePage.style.display = 'flex';
+            closeBtn.style.display = 'block';
+            startSurprise();
+        });
+        
+        // Close button
+        closeBtn.addEventListener('click', function() {
+            surprisePage.style.display = 'none';
+            openBtn.style.display = 'block';
+            this.style.display = 'none';
+            bgMusic.pause();
+        });
+        
+        // Start surprise sequence
+        function startSurprise() {
+            // Play music
+            bgMusic.volume = 0.5;
+            bgMusic.play().catch(e => console.log("Audio play prevented"));
+            
+            // Create floating hearts
+            createHearts();
+            
+            // Show photo items one by one with wishes
+            showPhotoWithWish(1, 1000);
+            showPhotoWithWish(2, 3000);
+            showPhotoWithWish(3, 5000);
+            showPhotoWithWish(4, 7000);
+            
+            // Show final message
+            setTimeout(() => {
+                finalMessage.classList.add('show');
+            }, 10000);
+        }
+        
+        // Show photo with wish
+        function showPhotoWithWish(photoNumber, delay) {
+            setTimeout(() => {
+                const photoItem = document.getElementById(photoItem${photoNumber});
+                const photoWish = document.getElementById(photoWish${photoNumber});
+                
+                // Show photo
+                photoItem.classList.add('show');
+                
+                // Set and animate wish
+                photoWish.textContent = photoWishes[photoNumber-1];
+            }, delay);
+        }
+        
+        // Create floating hearts animation
+        function createHearts() {
+            const heartIntervals = [100, 150, 200, 250, 300];
+            
+            heartIntervals.forEach(interval => {
+                setInterval(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.innerHTML = '❤';
+                    heart.style.left = Math.random() * window.innerWidth + 'px';
+                    heart.style.top = window.innerHeight + 'px';
+                    heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                    heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    document.body.appendChild(heart);
+                    
+                    // Remove heart after animation
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 4000);
+                }, interval);
+            });
+        }
+        
+        // Music control
+        function toggleMusic() {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                document.querySelector('.music-icon').textContent = '🔊';
+            } else {
+                bgMusic.pause();
+                document.querySelector('.music-icon').textContent = '🔇';
+            }
+        }
+    </script>
+</body>
+</html>
